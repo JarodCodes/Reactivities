@@ -1,41 +1,32 @@
 import { Group } from "@mui/icons-material";
-import { AppBar, Box, Button, Container, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, MenuItem, Toolbar, Typography } from "@mui/material";
+import { NavLink } from "react-router";
+import MenuItemLink from "../shared/components/MenuItemLink";
 
-type Props = {
-  openForm: () => void;
-}
-export default function Navbar({openForm}: Props) {
+export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{backgroundImage: 'linear-gradients(135deg, #182a74 0%, #218aae 69%, #20a7ac 89%)'}}>
         <Container maxWidth ='xl'>
           <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
             <Box>
-              <MenuItem sx={{display: 'flex', gap: 2}}>
+              <MenuItem component={NavLink} to = '/' sx={{display: 'flex', gap: 2}}>
                 <Group fontSize="large">
                 <Typography variant="h4" fontWeight='bold'>Reactivities</Typography>
                 </Group>
               </MenuItem>
             </Box>
             <Box sx={{display: 'flex'}}>
-              <MenuItem sx={{fontSize: '1.2tem', textTransform: 'uppercase', fontWeight: 'bold'}}>
+              <MenuItemLink to = '/activities' >
                 Activities
-              </MenuItem>
-              <MenuItem sx={{fontSize: '1.2tem', textTransform: 'uppercase', fontWeight: 'bold'}}>
-                About
-              </MenuItem>
-              <MenuItem sx={{fontSize: '1.2tem', textTransform: 'uppercase', fontWeight: 'bold'}}>
-                Contact
-              </MenuItem>
+              </MenuItemLink>
+              <MenuItemLink to = '/createActivity' >
+                Create Activity
+              </MenuItemLink>
             </Box>
-            <Button 
-              size="large" 
-              variant="contained" 
-              color="warning"
-              onClick={openForm}
-              >
-                Create activity
-            </Button>
+            <MenuItem>
+              User Menu
+            </MenuItem>
           </Toolbar>
         </Container>
       </AppBar>
