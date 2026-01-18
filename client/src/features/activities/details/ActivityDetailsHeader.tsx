@@ -24,7 +24,7 @@ export default function ActivityDetailsHeader({activity} : Props) {
         <CardMedia
             component="img"
             height="300"
-            image={`/images/categoryImages/${activity.category}}.jpg`}
+            image={`/images/categoryImages/${activity.category}.jpg`}
             alt={`${activity.category} image`}
         />
         <Box sx={{
@@ -64,7 +64,7 @@ export default function ActivityDetailsHeader({activity} : Props) {
                             variant="contained"
                             color="primary"
                             component={Link}
-                            to={`/manage/activityId`}
+                            to={`/manage/${activity.id}`}
                             disabled={isCancelled}
                         >
                             Manage Event

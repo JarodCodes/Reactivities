@@ -12,7 +12,7 @@ agent.interceptors.request.use(config => {
     return config;
 })
 
-agent.interceptors.request.use(
+agent.interceptors.response.use(
     async response => {
         await sleep(1000);
         store.uiStore.isIdle()
@@ -56,7 +56,7 @@ agent.interceptors.request.use(
 
 export default agent
 
-function sleep(delay: number) {
+const sleep = (delay: number) => {
     return new Promise(resolve =>{
         setTimeout(resolve, delay)
     })
