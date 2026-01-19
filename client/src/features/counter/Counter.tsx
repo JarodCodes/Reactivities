@@ -17,7 +17,7 @@ const Counter = observer(function Counter() {
       </ButtonGroup>
       </Box>
       <Paper sx={{width: '40%', p: 4}}>
-        <Typography variant="h5">COunter events ({counterStore.eventCount})</Typography>
+        <Typography variant="h5">Counter events ({counterStore.eventCount})</Typography>
         <List>
           {counterStore.events.map((event, index) => (
             <ListItem key={index}>
