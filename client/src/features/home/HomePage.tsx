@@ -12,7 +12,7 @@ export default function HomePage() {
             gap: 6,
             alignContent: 'center',
             justifyContent: 'center',
-            height: '100vh',
+            height: '100%',
             backgroundImage: 'linear-gradients(135deg, #182a74 0%, #218aae 69%, #20a7ac 89%)'
         }}>
             <Box sx={{
