@@ -11,13 +11,13 @@ namespace API.Controllers;
 public class ActivitiesController : BaseApiController
 {
     [HttpGet]
-    public async Task<ActionResult<List<Activity>>> GetActivities(CancellationToken ct)
+    public async Task<ActionResult<List<ActivityDto>>> GetActivities(CancellationToken ct)
     {
         return await Mediator.Send(new GetActivityList.Query(), ct);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Activity>> GetActivityDetail(string id)
+    public async Task<ActionResult<ActivityDto>> GetActivityDetail(string id)
     {
         return HandleResult(await Mediator.Send(new GetActivityDetails.Query { Id = id }));
     }
@@ -28,15 +28,24 @@ public class ActivitiesController : BaseApiController
         return HandleResult(await Mediator.Send(new CreateActivity.Command { ActivityDto = activityDto }));
     }
 
-    [HttpPut]
-    public async Task<ActionResult> EditActivity(EditActivityDto activity)
+    [HttpPut("{id}")]
+    [Authorize(Policy ="IsActivityHost")]
+    public async Task<ActionResult> EditActivity(string id, EditActivityDto editActivityDto)
     {
-        return HandleResult(await Mediator.Send(new EditActivity.Command { ActivityDto = activity }));
+        editActivityDto.Id = id;
+        return HandleResult(await Mediator.Send(new EditActivity.Command { ActivityDto = editActivityDto }));
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Policy ="IsActivityHost")]
     public async Task<ActionResult> DeleteActivity(string id)
     {
         return HandleResult(await Mediator.Send(new DeleteActivity.Command{Id = id}));
+    }
+
+    [HttpPost("{id}/attend")]
+    public async Task<ActionResult> Attend(string id)
+    {
+        return HandleResult(await Mediator.Send(new UpdateAttendence.Command{Id = id}));
     }
 }

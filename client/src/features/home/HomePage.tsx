@@ -11,9 +11,10 @@ export default function HomePage() {
             flexDirection: 'column',
             gap: 6,
             alignContent: 'center',
+            alignItems: 'center',
             justifyContent: 'center',
-            height: '100%',
-            backgroundImage: 'linear-gradients(135deg, #182a74 0%, #218aae 69%, #20a7ac 89%)'
+            height: '100vh',
+            backgroundImage: 'linear-gradient(135deg, #182a74 0%, #218aae 69%, #20a7ac 89%)'
         }}>
             <Box sx={{
                 display: "flex", 
