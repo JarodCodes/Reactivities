@@ -7,10 +7,10 @@ type Props = {
 }
 
 export default function ProfileCard({ profile } : Props) {
-    const following = false;
+
   return (
-    <Link to={`/profiles/${profile.id}`}  style={{textDecoration: 'none'}}>
-        <Card sx={{p: 3, maxWidth: '100%', textDecoration: 'none'}} elevation={4}>
+    <Link to={`/profile/${profile.id}`}  style={{textDecoration: 'none'}}>
+        <Card sx={{p: 3, maxWidth: 250, textDecoration: 'none'}} elevation={4}>
             <CardMedia component={'img'} src={profile?.imageUrl || '/images/user.png'} sx={{widht: 200, zIndex: 50}} alt={profile.displayName + ' image'}/>
             <CardContent>
                 <Box display={'flex'} flexDirection={'column'} gap={1}>
@@ -27,13 +27,13 @@ export default function ProfileCard({ profile } : Props) {
                             {profile.bio}
                         </Typography>
                     )}
-                    {following && <Chip size="small" label='Following' color="secondary" variant="outlined"/>}
+                    {profile.following && <Chip size="small" label='Following' color="secondary" variant="outlined"/>}
                 </Box>
             </CardContent>
             <Divider sx={{mb: 3}}/>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'start'}}>
                 <Person/>
-                <Typography sx={{marginLeft: 1}}>20 Followers</Typography>
+                <Typography sx={{marginLeft: 1}}>{profile.followersCount}</Typography>
             </Box>
         </Card>
     </Link>
